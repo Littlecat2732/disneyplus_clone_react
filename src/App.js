@@ -1,23 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import { Routes, Route, HashRouter } from "react-router-dom";
+import React, { useEffect } from 'react';
+import Header from './components/Header';
+import Home from './components/Home';
+import Detail from "./components/Detail";
 
 function App() {
+  useEffect(() => {
+    let link = document.querySelector("link[rel~='icon']");
+    if (!link) {
+      link = document.createElement('link');
+      link.rel = 'icon';
+      document.getElementsByTagName('head')[0].appendChild(link);
+    }
+    document.title = 'Disney+ clone';
+    link.href = '/images/favicon.ico';
+  }, []);
+
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <HashRouter>
+        <Header />
+        <Routes>
+          <Route exact path="/" element={<Home />} />
+          <Route path="/home" element={<Home />} />
+          <Route path="/detail/:id" element={<Detail />} />
+        </Routes>
+      </HashRouter>
     </div>
   );
 }

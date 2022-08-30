@@ -1,0 +1,4 @@
+npx create-react-app disneyplus_clone_react
+npm i react-router-dom
+npm install --save redux react-redux
+npm i @reduxjs/toolkit
